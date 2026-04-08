@@ -22,7 +22,8 @@ router.post('/generate', protect, async (req, res) => {
             return res.status(404).json({ message: 'Topic not found' });
         }
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const primaryModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const fallbackModel = genAI.getGenerativeModel({ model: "gemini-pro-latest" });
 
         let prompt = "";
         if (promptText) {
@@ -53,7 +54,18 @@ router.post('/generate', protect, async (req, res) => {
             `;
         }
 
-        const result = await model.generateContent(prompt);
+        let result;
+        try {
+            result = await primaryModel.generateContent(prompt);
+        } catch (primaryError) {
+            console.warn('Primary model failed, attempting fallback...', primaryError.message);
+            try {
+                result = await fallbackModel.generateContent(prompt);
+            } catch (fallbackError) {
+                throw new Error('Both primary and fallback models failed. (Primary Error: ' + primaryError.message + ')');
+            }
+        }
+        
         const response = result.response;
         const text = response.text();
 
