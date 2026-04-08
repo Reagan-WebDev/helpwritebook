@@ -17,6 +17,7 @@ const WritingInterface = () => {
   const [isAiPanelOpen, setIsAiPanelOpen] = useState(false);
   const [aiPromptText, setAiPromptText] = useState('');
   const [aiResponse, setAiResponse] = useState('');
+  const [aiError, setAiError] = useState('');
 
   const MIN_WORDS = 1000;
 
@@ -65,6 +66,7 @@ const WritingInterface = () => {
     if (!aiPromptText.trim()) return;
     setIsGenerating(true);
     setAiResponse('');
+    setAiError('');
     
     try {
       const res = await api.post('/ai/generate', {
@@ -75,7 +77,7 @@ const WritingInterface = () => {
       setAiResponse(res.data.generatedText);
     } catch (err) {
       console.error(err);
-      setAiResponse(err.response?.data?.message || 'Failed to generate response.');
+      setAiError(err.response?.data?.message || 'Failed to generate response.');
     } finally {
       setIsGenerating(false);
     }
@@ -198,25 +200,28 @@ const WritingInterface = () => {
             {isGenerating ? 'Thinking...' : 'Ask AI'}
           </button>
 
-          {aiResponse && (
+          {(aiResponse || aiError) && (
             <div style={{ marginTop: '1rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ 
                 padding: '1rem', 
-                background: 'rgba(30, 41, 59, 0.4)', 
+                background: aiError ? 'rgba(239, 68, 68, 0.1)' : 'rgba(30, 41, 59, 0.4)', 
+                color: aiError ? 'var(--danger)' : 'white',
                 borderRadius: '8px', 
-                border: '1px solid var(--border)',
+                border: aiError ? '1px solid var(--danger)' : '1px solid var(--border)',
                 maxHeight: '300px',
                 overflowY: 'auto',
                 whiteSpace: 'pre-wrap'
               }}>
-                {aiResponse}
+                {aiError || aiResponse}
               </div>
-              <button 
-                className="primary" 
-                onClick={handleInsertAIResponse}
-              >
-                Insert into Draft
-              </button>
+              {!aiError && (
+                <button 
+                  className="primary" 
+                  onClick={handleInsertAIResponse}
+                >
+                  Insert into Draft
+                </button>
+              )}
             </div>
           )}
         </div>
