@@ -22,7 +22,8 @@ const UserSchema = new mongoose.Schema({
     preferences: {
         theme: { type: String, default: 'dark' },
         font: { type: String, default: 'sans' },
-        background: { type: String, default: 'default' }
+        background: { type: String, default: 'default' },
+        aiModel: { type: String, default: 'gemini-2.5-flash' }
     },
 }, { timestamps: true });
 

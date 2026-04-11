@@ -93,12 +93,13 @@ router.get('/me', protect, async (req, res) => {
 // @access  Private
 router.put('/preferences', protect, async (req, res) => {
     try {
-        const { theme, font, background } = req.body;
+        const { theme, font, background, aiModel } = req.body;
         const user = await User.findById(req.user.id);
         
         if (theme) user.preferences.theme = theme;
         if (font) user.preferences.font = font;
         if (background) user.preferences.background = background;
+        if (aiModel) user.preferences.aiModel = aiModel;
         
         await user.save();
         res.json(user.preferences);

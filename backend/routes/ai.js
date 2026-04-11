@@ -8,7 +8,7 @@ const Topic = require('../models/Topic');
 // @desc    Generate text continuation using Gemini AI
 // @access  Private
 router.post('/generate', protect, async (req, res) => {
-    const { topicId, currentText, promptText } = req.body;
+    const { topicId, currentText, promptText, preferredModel } = req.body;
 
     try {
         if (!process.env.GEMINI_API_KEY) {
@@ -22,7 +22,8 @@ router.post('/generate', protect, async (req, res) => {
             return res.status(404).json({ message: 'Topic not found' });
         }
 
-        const primaryModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const primaryModelStr = preferredModel || "gemini-2.5-flash";
+        const primaryModel = genAI.getGenerativeModel({ model: primaryModelStr });
         const fallbackModel = genAI.getGenerativeModel({ model: "gemini-pro-latest" });
 
         let prompt = "";
