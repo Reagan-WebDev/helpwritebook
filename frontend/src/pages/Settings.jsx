@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Settings as SettingsIcon, Monitor, Image as ImageIcon, Type } from 'lucide-react';
+import { Settings as SettingsIcon, Monitor, Image as ImageIcon, Type, Cpu } from 'lucide-react';
 
 const Settings = () => {
-  const { theme, setTheme, font, setFont, background, setBackground } = useTheme();
+  const { theme, setTheme, font, setFont, background, setBackground, aiModel, setAiModel } = useTheme();
 
   // Aesthetic placeholder backgrounds from Unsplash that fit writing vibes
   const backgrounds = [
@@ -119,6 +119,48 @@ const Settings = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <hr style={{ borderColor: 'var(--border)' }} />
+
+        {/* AI Model Selection */}
+        <div>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+            <Cpu size={20} className="text-accent" /> Preferred AI Model
+          </h3>
+          <p className="text-secondary" style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+            Choose the specific underlying LLM model used for the AI Writing Assistant.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <button 
+              className={aiModel === 'gemini-2.5-flash' ? 'primary' : 'secondary'}
+              onClick={() => setAiModel('gemini-2.5-flash')}
+              style={{ flex: 1, minWidth: '150px' }}
+            >
+              Gemini 2.5 Flash
+            </button>
+            <button 
+              className={aiModel === 'gemini-2.5-pro' ? 'primary' : 'secondary'}
+              onClick={() => setAiModel('gemini-2.5-pro')}
+              style={{ flex: 1, minWidth: '150px' }}
+            >
+              Gemini 2.5 Pro
+            </button>
+            <button 
+              className={aiModel === 'gemini-pro-latest' ? 'primary' : 'secondary'}
+              onClick={() => setAiModel('gemini-pro-latest')}
+              style={{ flex: 1, minWidth: '150px' }}
+            >
+              Gemini Pro (Legacy Base)
+            </button>
+            <button 
+              className={aiModel === 'gemini-flash-latest' ? 'primary' : 'secondary'}
+              onClick={() => setAiModel('gemini-flash-latest')}
+              style={{ flex: 1, minWidth: '150px' }}
+            >
+              Gemini Flash Latest
+            </button>
           </div>
         </div>
 

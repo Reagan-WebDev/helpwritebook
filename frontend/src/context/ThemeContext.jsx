@@ -14,6 +14,7 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(prefs.theme || 'dark');
   const [font, setFont] = useState(prefs.font || 'sans');
   const [background, setBackground] = useState(prefs.background || 'default');
+  const [aiModel, setAiModel] = useState(prefs.aiModel || 'gemini-2.5-flash');
 
   const isInitialMount = useRef(true);
 
@@ -48,12 +49,12 @@ export const ThemeProvider = ({ children }) => {
       const syncPreferences = async () => {
         try {
           // Push securely to backend Route
-          await api.put('/auth/preferences', { theme, font, background });
+          await api.put('/auth/preferences', { theme, font, background, aiModel });
           
           // Resave updated user payload safely to local tracker string 
           // (Ensures rapid navigation/refreshes work without making constant GET requests)
           if (user) {
-            user.preferences = { theme, font, background };
+            user.preferences = { theme, font, background, aiModel };
             localStorage.setItem('user', JSON.stringify(user));
           }
         } catch (err) {
@@ -66,10 +67,10 @@ export const ThemeProvider = ({ children }) => {
         syncPreferences();
       }
     }
-  }, [theme, font, background]);
+  }, [theme, font, background, aiModel]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, font, setFont, background, setBackground }}>
+    <ThemeContext.Provider value={{ theme, setTheme, font, setFont, background, setBackground, aiModel, setAiModel }}>
       {children}
     </ThemeContext.Provider>
   );

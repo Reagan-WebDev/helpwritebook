@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api';
+import { useTheme } from '../context/ThemeContext';
 
 const WritingInterface = () => {
   const { topicId } = useParams();
   const navigate = useNavigate();
+  const { aiModel } = useTheme();
   
   const [topic, setTopic] = useState(null);
   const [content, setContent] = useState('');
@@ -72,7 +74,8 @@ const WritingInterface = () => {
       const res = await api.post('/ai/generate', {
         topicId,
         currentText: content.slice(-1500), // context
-        promptText: aiPromptText
+        promptText: aiPromptText,
+        preferredModel: aiModel
       });
       setAiResponse(res.data.generatedText);
     } catch (err) {
