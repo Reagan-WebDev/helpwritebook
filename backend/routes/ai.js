@@ -24,7 +24,7 @@ router.post('/generate', protect, async (req, res) => {
 
         const primaryModelStr = preferredModel || "gemini-2.5-flash";
         const primaryModel = genAI.getGenerativeModel({ model: primaryModelStr });
-        const fallbackModel = genAI.getGenerativeModel({ model: "gemini-pro-latest" });
+        const fallbackModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         let prompt = "";
         if (promptText) {
