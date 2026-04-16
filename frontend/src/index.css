@@ -199,3 +199,33 @@ body.font-monospace {
   --font-body: 'Courier New', monospace;
   --font-heading: 'Courier New', monospace;
 }
+
+/* Mobile Navbar Styles */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none !important;
+  }
+  .nav-mobile-toggle {
+    display: block !important;
+  }
+  .nav-mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    display: flex;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-mobile-toggle {
+    display: none !important;
+  }
+}
