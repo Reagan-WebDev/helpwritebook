@@ -72,7 +72,7 @@ const Community = () => {
 
   return (
     <div className="container" style={{ marginTop: '2rem', maxWidth: '800px' }}>
-      <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ marginBottom: '2rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h2>Community Contributions</h2>
           <p className="text-secondary">Reading submissions for: <span className="text-primary">{topic.title}</span></p>

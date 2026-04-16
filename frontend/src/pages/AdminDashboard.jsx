@@ -83,7 +83,7 @@ const AdminDashboard = () => {
               onChange={(e) => setNewTopic({ ...newTopic, description: e.target.value })}
             ></textarea>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
             <div className="form-group">
               <label>Threshold Type</label>
               <select 
@@ -113,7 +113,7 @@ const AdminDashboard = () => {
       <h3>Active Topics</h3>
       <div style={{ marginTop: '1rem' }}>
         {topics.map(topic => (
-          <div key={topic._id} className="card" style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div key={topic._id} className="card" style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h4 style={{ margin: 0 }}>{topic.title}</h4>
               <p className="text-secondary" style={{ margin: 0, fontSize: '0.9rem' }}>

@@ -104,7 +104,7 @@ const WritingInterface = () => {
 
   return (
     <div className="container" style={{ marginTop: '2rem', maxWidth: isAiPanelOpen ? '1200px' : '900px', transition: 'max-width 0.3s ease' }}>
-      <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ marginBottom: '2rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h2>{topic.title}</h2>
           <p className="text-secondary">{topic.description}</p>

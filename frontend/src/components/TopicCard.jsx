@@ -45,13 +45,13 @@ const TopicCard = ({ topic }) => {
         </div>
       </div>
       
-      <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-        <Link to={`/community/${topic._id}`} style={{ flex: 1 }}>
-          <button className="secondary w-full">Read</button>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1.5rem' }}>
+        <Link to={`/community/${topic._id}`} style={{ flex: '1 1 100px' }}>
+          <button className="secondary w-full" style={{ padding: '0.75rem 0.5rem', minWidth: '0' }}>Read</button>
         </Link>
         {!isClosed && (
-          <Link to={`/write/${topic._id}`} style={{ flex: 1 }}>
-            <button className="primary w-full">Contribute</button>
+          <Link to={`/write/${topic._id}`} style={{ flex: '1 1 100px' }}>
+            <button className="primary w-full" style={{ padding: '0.75rem 0.5rem', minWidth: '0' }}>Contribute</button>
           </Link>
         )}
       </div>

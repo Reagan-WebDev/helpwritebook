@@ -50,7 +50,7 @@ const Home = () => {
       }}>
         <div className="container" style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', 
           gap: '2rem' 
         }}>
           <div className="card text-center" style={{ padding: '2rem' }}>
