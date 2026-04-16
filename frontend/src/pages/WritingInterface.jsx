@@ -21,6 +21,11 @@ const WritingInterface = () => {
   const [aiResponse, setAiResponse] = useState('');
   const [aiError, setAiError] = useState('');
 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const userStr = localStorage.getItem('user');
+  const user = userStr ? JSON.parse(userStr) : null;
+  const userName = user?.name || 'Writer';
+
   const MIN_WORDS = 500;
 
   useEffect(() => {
@@ -53,7 +58,7 @@ const WritingInterface = () => {
         content,
         wordCount
       });
-      navigate(`/community/${topicId}`);
+      setShowSuccessPopup(true);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to submit');
       setSubmitting(false);
@@ -230,6 +235,36 @@ const WritingInterface = () => {
           </div>
         )}
       </div>
+
+      {showSuccessPopup && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(5px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
+        }}>
+          <div className="card text-center" style={{ padding: '3rem', maxWidth: '500px', border: '1px solid var(--accent)' }}>
+            <h3 style={{ marginBottom: '1rem', color: 'var(--success)' }}>Success!</h3>
+            <p style={{ fontSize: '1.2rem', marginBottom: '2rem', lineHeight: '1.6' }}>
+              Hello {userName}, Your view or rather writing has been sucessfully submitted to the book. Thank you for your contribution on the topic.
+            </p>
+            <button
+              className="primary"
+              onClick={() => navigate(`/community/${topicId}`)}
+              style={{ padding: '0.75rem 2rem', fontSize: '1.1rem' }}
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
