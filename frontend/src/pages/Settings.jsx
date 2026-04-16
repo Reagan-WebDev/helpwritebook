@@ -27,7 +27,7 @@ const Settings = () => {
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
             <Monitor size={20} className="text-accent" /> UI Theme
           </h3>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button 
               className={theme === 'dark' ? 'primary' : 'secondary'}
               onClick={() => setTheme('dark')}
@@ -55,7 +55,7 @@ const Settings = () => {
           <p className="text-secondary" style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
             Choose how you want text to appear while writing. (Compiled books will always use the standardized book font).
           </p>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button 
               className={font === 'sans' ? 'primary' : 'secondary'}
               onClick={() => setFont('sans')}
