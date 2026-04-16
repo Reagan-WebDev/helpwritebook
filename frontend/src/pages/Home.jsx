@@ -61,7 +61,7 @@ const Home = () => {
           <div className="card text-center" style={{ padding: '2rem' }}>
             <PenTool size={40} className="text-accent" style={{ margin: '0 auto 1rem auto' }} />
             <h3>Write Chapters</h3>
-            <p className="text-secondary">Contribute 1000+ words to progress a book toward its goal.</p>
+            <p className="text-secondary">Contribute 500+ words to progress a book toward its goal.</p>
           </div>
           <div className="card text-center" style={{ padding: '2rem' }}>
             <Sparkles size={40} className="text-accent" style={{ margin: '0 auto 1rem auto' }} />
