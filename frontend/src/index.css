@@ -213,8 +213,7 @@ body.font-monospace {
     top: 100%;
     left: 0;
     width: 100%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
     flex-direction: column;
     padding: 1.5rem;
