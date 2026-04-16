@@ -12,8 +12,8 @@ router.post('/', protect, async (req, res) => {
 
     try {
         // Validate word count
-        if (wordCount < 1000) {
-            return res.status(400).json({ message: 'Submission must be at least 1000 words.' });
+        if (wordCount < 500) {
+            return res.status(400).json({ message: 'Submission must be at least 500 words.' });
         }
 
         const topic = await Topic.findById(topicId);
