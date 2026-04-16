@@ -106,11 +106,9 @@ const Navbar = () => {
       </button>
 
       {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <nav className="nav-mobile-menu">
-          <NavItems isMobile={true} />
-        </nav>
-      )}
+      <nav className={`nav-mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <NavItems isMobile={true} />
+      </nav>
     </header>
   );
 };

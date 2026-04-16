@@ -220,6 +220,20 @@ body.font-monospace {
     gap: 1rem;
     display: flex;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    
+    /* Smooth Dropdown Animation */
+    transform: translateY(-50px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease-in-out, visibility 0.6s;
+  }
+  
+  .nav-mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 
