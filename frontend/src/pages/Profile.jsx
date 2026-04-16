@@ -33,7 +33,7 @@ const Profile = () => {
 
   return (
     <div className="container" style={{ marginTop: '2rem', maxWidth: '900px' }}>
-      <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
+      <div className="card" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
         <div style={{ 
           width: '100px', 
           height: '100px', 
@@ -60,7 +60,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
         <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Book size={32} className="text-accent" />
           <div>
@@ -82,7 +82,7 @@ const Profile = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
           {submissions.map(sub => (
             <div key={sub._id} className="card">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <h4 style={{ margin: 0 }} className="text-accent">{sub.topic?.title || 'Unknown Topic'}</h4>
                 <span className="text-secondary">{new Date(sub.createdAt).toLocaleDateString()}</span>
               </div>
