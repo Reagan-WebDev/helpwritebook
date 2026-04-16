@@ -253,7 +253,7 @@ const WritingInterface = () => {
           <div className="card text-center" style={{ padding: '3rem', maxWidth: '500px', border: '1px solid var(--accent)' }}>
             <h3 style={{ marginBottom: '1rem', color: 'var(--success)' }}>Success!</h3>
             <p style={{ fontSize: '1.2rem', marginBottom: '2rem', lineHeight: '1.6' }}>
-              Hello {userName}, Your view or rather writing has been sucessfully submitted to the book. Thank you for your contribution on the topic.
+              Hello {userName}, Your view has been sucessfully submitted to the book. Thank you for your contribution on the topic.
             </p>
             <button
               className="primary"
