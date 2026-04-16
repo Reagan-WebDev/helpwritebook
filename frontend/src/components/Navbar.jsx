@@ -92,7 +92,7 @@ const Navbar = () => {
       </Link>
       
       {/* Desktop Navigation */}
-      <nav className="nav-desktop" style={{ gap: '1.5rem', alignItems: 'center' }}>
+      <nav className="nav-desktop" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
         <NavItems isMobile={false} />
       </nav>
 

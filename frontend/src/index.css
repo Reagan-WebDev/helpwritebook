@@ -241,4 +241,7 @@ body.font-monospace {
   .nav-mobile-toggle {
     display: none !important;
   }
+  .nav-mobile-menu {
+    display: none !important;
+  }
 }
