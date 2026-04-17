@@ -83,6 +83,17 @@ button.secondary:hover {
   background: var(--surface-hover);
 }
 
+button.danger {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+button.danger:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;

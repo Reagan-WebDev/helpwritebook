@@ -47,7 +47,7 @@ const Navbar = () => {
             </Link>
             <button 
               onClick={() => { handleLogout(); closeMenu(); }}
-              className="secondary" 
+              className="danger" 
               style={{ 
                 padding: '0.5rem 1rem', 
                 display: 'flex', 
