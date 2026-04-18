@@ -43,7 +43,12 @@ const Navbar = () => {
               <SettingsIcon size={20} /> {isMobile && "Settings"}
             </Link>
             <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={closeMenu}>
-              <User size={18} /> {user?.name}
+              {user?.profilePicture ? (
+                <img src={user.profilePicture} alt={user.name} style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border)' }} />
+              ) : (
+                <User size={18} />
+              )}
+              {user?.name}
             </Link>
             <button 
               onClick={() => { handleLogout(); closeMenu(); }}

@@ -7,6 +7,56 @@ const Profile = () => {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.onload = () => {
+        // HTML5 Canvas approach to compress image on client-side before sending
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 150;
+        const MAX_HEIGHT = 150;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+        
+        // Update via backend API
+        api.put('/auth/profile-picture', { profilePicture: dataUrl })
+          .then(res => {
+             const updatedUser = { ...user, profilePicture: res.data.profilePicture };
+             setUser(updatedUser);
+             localStorage.setItem('user', JSON.stringify(updatedUser)); // Persist locally globally
+          })
+          .catch(err => {
+             console.error("Failed to upload image", err);
+             alert("Failed to upload profile picture");
+          });
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -34,17 +84,45 @@ const Profile = () => {
   return (
     <div className="container" style={{ marginTop: '2rem', maxWidth: '900px' }}>
       <div className="card" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
-        <div style={{ 
-          width: '100px', 
-          height: '100px', 
-          borderRadius: '50%', 
-          background: 'var(--accent)', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center' 
-        }}>
-          <User size={48} color="white" />
-        </div>
+        <label style={{ cursor: 'pointer', position: 'relative' }} title="Change Profile Picture">
+          <input 
+            type="file" 
+            accept="image/*" 
+            style={{ display: 'none' }} 
+            onChange={handleImageUpload} 
+          />
+          <div style={{ 
+            width: '100px', 
+            height: '100px', 
+            borderRadius: '50%', 
+            background: 'var(--accent)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            overflow: 'hidden',
+            border: '2px solid var(--border)',
+            boxShadow: 'var(--shadow)'
+          }}>
+            {user.profilePicture ? (
+              <img src={user.profilePicture} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              <User size={48} color="white" />
+            )}
+          </div>
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: '50%',
+            padding: '0.4rem',
+            display: 'flex',
+            boxShadow: 'var(--shadow)'
+          }}>
+             <Edit3 size={14} className="text-secondary" />
+          </div>
+        </label>
         <div>
           <h2 style={{ margin: 0, marginBottom: '0.5rem' }}>{user.name}</h2>
           <p className="text-secondary" style={{ margin: 0 }}>{user.email}</p>
