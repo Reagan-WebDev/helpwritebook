@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
         background: { type: String, default: 'default' },
         aiModel: { type: String, default: 'gemini-2.5-flash' }
     },
+    profilePicture: { 
+        type: String, 
+        default: '' 
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', UserSchema);

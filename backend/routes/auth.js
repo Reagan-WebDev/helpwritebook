@@ -33,6 +33,7 @@ router.post('/register', async (req, res) => {
             email: user.email,
             role: user.role,
             preferences: user.preferences,
+            profilePicture: user.profilePicture,
             token
         });
     } catch (error) {
@@ -67,6 +68,7 @@ router.post('/login', async (req, res) => {
             email: user.email,
             role: user.role,
             preferences: user.preferences,
+            profilePicture: user.profilePicture,
             token
         });
     } catch (error) {
@@ -103,6 +105,24 @@ router.put('/preferences', protect, async (req, res) => {
         
         await user.save();
         res.json(user.preferences);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   PUT /api/auth/profile-picture
+// @desc    Update user profile picture base64 string
+// @access  Private
+router.put('/profile-picture', protect, async (req, res) => {
+    try {
+        const { profilePicture } = req.body;
+        const user = await User.findById(req.user.id);
+        
+        user.profilePicture = profilePicture;
+        
+        await user.save();
+        res.json({ message: 'Profile picture updated', profilePicture: user.profilePicture });
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server Error');
