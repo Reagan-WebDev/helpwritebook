@@ -82,7 +82,7 @@ const Navbar = () => {
     <header style={{ 
       padding: '1rem 2rem', 
       borderBottom: '1px solid var(--border)', 
-      background: 'rgba(30, 41, 59, 0.4)',
+      background: 'var(--glass-bg)',
       backdropFilter: 'blur(10px)',
       position: 'sticky',
       top: 0,

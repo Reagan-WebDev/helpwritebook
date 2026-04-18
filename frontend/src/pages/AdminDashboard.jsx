@@ -78,7 +78,7 @@ const AdminDashboard = () => {
             <textarea 
               required
               rows="3"
-              style={{ padding: '1rem', background: 'rgba(15, 23, 42, 0.6)', color: 'white', border: '1px solid var(--border)', borderRadius: '8px', width: '100%', resize: 'vertical' }}
+              style={{ padding: '1rem', border: '1px solid var(--border)', borderRadius: '8px', width: '100%', resize: 'vertical' }}
               value={newTopic.description}
               onChange={(e) => setNewTopic({ ...newTopic, description: e.target.value })}
             ></textarea>
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
             <div className="form-group">
               <label>Threshold Type</label>
               <select 
-                style={{ width: '100%', padding: '0.8rem', background: 'rgba(15, 23, 42, 0.6)', color: 'white', border: '1px solid var(--border)', borderRadius: '8px' }}
+                style={{ width: '100%', padding: '0.8rem', border: '1px solid var(--border)', borderRadius: '8px' }}
                 value={newTopic.thresholdType}
                 onChange={(e) => setNewTopic({ ...newTopic, thresholdType: e.target.value })}
               >
