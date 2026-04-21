@@ -12,7 +12,14 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+    },
+    authProvider: {
+        type: String,
+        enum: ['local', 'google'],
+        default: 'local'
+    },
+    googleId: {
+        type: String
     },
     role: {
         type: String,
