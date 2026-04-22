@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import CompiledBooks from './pages/CompiledBooks';
 import Settings from './pages/Settings';
+import BookReader from './pages/BookReader';
 
 // Simple protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/compiled-books" element={<ProtectedRoute><CompiledBooks /></ProtectedRoute>} />
+            <Route path="/read/:topicId" element={<ProtectedRoute><BookReader /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
           </Routes>
         </main>

@@ -129,14 +129,23 @@ const CompiledBooks = () => {
                 <span className="text-secondary">{topic.currentWordCount.toLocaleString()} words</span>
                 <span className="text-secondary">{topic.currentSubmissions} chapters</span>
               </div>
-              <button 
-                className="primary" 
-                style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: 'auto' }}
-                onClick={() => handleDownload(topic)}
-                disabled={loadingIds[topic._id]}
-              >
-                <Download size={18} /> {loadingIds[topic._id] ? 'Generating PDF...' : 'Download PDF'}
-              </button>
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto' }}>
+                <button 
+                  className="primary" 
+                  style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', padding: '0.6rem' }}
+                  onClick={() => window.location.href = `/read/${topic._id}`}
+                >
+                  <Book size={18} /> Read
+                </button>
+                <button 
+                  className="secondary" 
+                  style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', padding: '0.6rem' }}
+                  onClick={() => handleDownload(topic)}
+                  disabled={loadingIds[topic._id]}
+                >
+                  <Download size={18} /> {loadingIds[topic._id] ? 'Generating...' : 'PDF'}
+                </button>
+              </div>
             </div>
           </div>
         ))}

@@ -24,11 +24,9 @@ const Navbar = () => {
       return (
         <>
           <Link to="/dashboard" onClick={closeMenu}>Dashboard</Link>
+          <Link to="/compiled-books" className="text-secondary" onClick={closeMenu}>Library</Link>
           {user?.role === 'admin' && (
-            <>
-              <Link to="/compiled-books" className="text-secondary" onClick={closeMenu}>Library</Link>
-              <Link to="/admin" className="text-accent" onClick={closeMenu}>Admin</Link>
-            </>
+            <Link to="/admin" className="text-accent" onClick={closeMenu}>Admin</Link>
           )}
           
           <div style={{ 
