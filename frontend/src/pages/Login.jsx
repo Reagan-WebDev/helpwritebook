@@ -24,6 +24,7 @@ const Login = () => {
           email: res.data.email,
           role: res.data.role,
           preferences: res.data.preferences,
+          profilePicture: res.data.profilePicture,
         })
       );
 
@@ -48,6 +49,7 @@ const Login = () => {
           email: res.data.email,
           role: res.data.role,
           preferences: res.data.preferences,
+          profilePicture: res.data.profilePicture,
         })
       );
 
